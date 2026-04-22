@@ -4,6 +4,10 @@ require_once 'utils/helper.php';
 require_once 'database/database.php';
 $currentPage = basename($_SERVER['PHP_SELF']);
 
+if(isset($_SESSION['user'])) {
+    redirect('admin/dashboard.php');
+}
+
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $conn = connection();

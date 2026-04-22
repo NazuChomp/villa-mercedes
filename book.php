@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once 'utils/helper.php';
 
 $currentPage = basename($_SERVER['PHP_SELF']);

@@ -19,6 +19,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 </head>
 
 <body>
+
     <header>
         <div class="header-container">
             <a href="<?= e(url('index.php')) ?>" class="brand-label">Villa Mercedes</a>
@@ -31,6 +32,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             </div>
         </div>
     </header>
+
     <nav class="admin-subnav">
         <div class="admin-subnav-inner">
             <a href="<?= e(url('admin/dashboard.php')) ?>" class="<?= $currentPage === 'dashboard.php' ? 'is-active' : '' ?>">Dashboard</a>
@@ -38,17 +40,24 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <a href="<?= e(url('admin/bookings.php')) ?>" class="<?= $currentPage === 'bookings.php' ? 'is-active' : '' ?>">Bookings</a>
             <a href="<?= e(url('admin/reports.php')) ?>" class="<?= $currentPage === 'reports.php' ? 'is-active' : '' ?>">Reports</a>
             <a href="<?= e(url('index.php')) ?>" target="_blank" >View site</a>
-            <a href="<?= e(url('logout.php')) ?>">Log out</a>
         </div>
     </nav>
-    <div class="page-head">
-        <div class="dashboard-title-block">
-            <h1>Admin Management System</h1>
-            <p>Welcome back, <?= e($_SESSION['user']['full_name']) ?>.</p>
-            <span>
-                <a href="<?= e(url('logout.php')) ?>">Logout</a>
-            </span>
+
+    <main class="main-dashboard">
+        <div class="page-head">
+            <div class="dashboard-title-block">
+                <div class="h1-row">
+                    <h1>Admin Management System</h1>
+                    <a href="<?= e(url('logout.php')) ?>" class="logout-btn">Logout</a>
+                </div>
+                <p>Welcome back, <?= e($_SESSION['user']['full_name']) ?>.</p>                    
+            </div>
         </div>
-    </div>
+
+        <div class="summary-tracker">
+            
+        </div>
+    </main>
+
 </body>
 </html>

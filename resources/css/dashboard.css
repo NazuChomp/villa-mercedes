@@ -1,17 +1,27 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, "Geneva", Verdana, sans-serif;
-}
 
 .page-head {
     width: 100%;
+    display: flex;
     max-width: 1200px;
-    display: block;
     margin: 5px auto;
 }
 
 .dashboard-title-block {
     padding: 16px;
+    width: 100%;
+}
+
+.h1-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout-btn {
+    background-color: #0d5c4d;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
 }
