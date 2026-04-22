@@ -4,6 +4,10 @@ require_once '../utils/helper.php';
 require_once '../database/database.php';
 require_once '../utils/booking-functions.php';
 $currentPage = basename($_SERVER['PHP_SELF']);
+
+$monthly_revenue = 0; //placeholder for backend
+$active_booking = 0;
+$pending_approval = 0;
 ?>
 
 <!DOCTYPE html>
@@ -55,9 +59,20 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         </div>
 
         <div class="summary-tracker">
-            
+            <div class="summary-card monthly">
+                <p>MONTHLY REVENUE</p>
+                <h1><?= e('₱' . number_format($monthly_revenue, 2)) ?></h1>
+            </div>
+            <div class="summary-card active-booking">
+                <p>Active Booking</p>
+                <h1><?= $active_booking ?></h1>
+            </div>
+            <div class="summary-card pending">
+                <p>Pendig Approval</p>
+                <h1><?= $pending_approval ?></h1>
+            </div>
+        
         </div>
     </main>
-
 </body>
 </html>

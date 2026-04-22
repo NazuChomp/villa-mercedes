@@ -1,9 +1,42 @@
+.main-dashboard {
+    display: block;
+    background-color: #fff;
+    
+}
 
 .page-head {
+    width: 100%;
+    max-width: 1200px;
+    margin: 5px auto;
+}
+
+.summary-tracker {
     width: 100%;
     display: flex;
     max-width: 1200px;
     margin: 5px auto;
+    padding: 16px;
+    gap: 20px;
+}
+
+.summary-card {
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 16px;
+    border: 3px solid transparent
+}
+
+.monthly {
+    border-bottom-color: #2ecc71;
+}
+
+.active-booking {
+    border-bottom-color: #2eaccc;
+}
+
+.pending {
+    border-bottom-color: #ccaf2e;
 }
 
 .dashboard-title-block {
