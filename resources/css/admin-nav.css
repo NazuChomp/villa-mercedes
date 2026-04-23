@@ -1,21 +1,22 @@
 .admin-subnav {
-    background-color: #1a252f;
+    background-color: #FFFFFF;
+    padding: 10px 10px;
 }
 
 .admin-subnav-inner {
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
-    padding: 0 16px;
+    padding: 0 1rem;
     display: flex;
-    gap: 15px;
+    gap: .9375rem;
 }
 
 .admin-subnav-inner a {
-    color: #bdc3c7;
+    color: #2C3E50;
     text-decoration: none;
     font-weight: 600;
-    font-size: 14px;
-    padding: 10px 0px;
+    font-size: .875rem;
+    padding: .625rem 0;
     display: inline-block;
 }
 
@@ -26,4 +27,31 @@
 .admin-subnav-inner a.is-active {
     color: #2ecc71;
     border-bottom: 2px solid #2ecc71;
+}
+
+@media (max-width: 768px) {
+    .admin-subnav-inner {
+        overflow-x: auto;
+        gap: 0;
+        padding: 0;
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .admin-subnav-inner::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+    }
+
+    .admin-subnav-inner a {
+        padding: 0.625rem 0.75rem;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .admin-subnav-inner a {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.6rem;
+    }
 }

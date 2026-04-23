@@ -8,6 +8,13 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 $monthly_revenue = 0; //placeholder for backend
 $active_booking = 0;
 $pending_approval = 0;
+
+$conn =connection();
+$stmt = $conn->prepare("SELECT * FROM facilities");
+$stmt->execute();
+$result = $stmt->get_result();
+
+$status = 'Occupied';
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +55,7 @@ $pending_approval = 0;
     </nav>
 
     <main class="main-dashboard">
-        <div class="page-head">
+        <div class="container page-head">
             <div class="dashboard-title-block">
                 <div class="h1-row">
                     <h1>Admin Management System</h1>
@@ -58,7 +65,7 @@ $pending_approval = 0;
             </div>
         </div>
 
-        <div class="summary-tracker">
+        <div class="container summary-container">
             <div class="summary-card monthly">
                 <p>MONTHLY REVENUE</p>
                 <h1><?= e('₱' . number_format($monthly_revenue, 2)) ?></h1>
@@ -71,7 +78,37 @@ $pending_approval = 0;
                 <p>Pendig Approval</p>
                 <h1><?= $pending_approval ?></h1>
             </div>
-        
+        </div>
+
+        <div class="container facility-container">
+            <p>Villa Status Tracker</p>
+            <div class="divider">
+                <?php if($result->num_rows > 0): ?>
+                    <?php while($row = $result->fetch_assoc()): ?>
+                        <div class="facility-card">
+                            <h3><?= e($row['name']) ?></h3>
+                            <p class="status <?= $status ?>"><?= $status ?></p>
+                        </div>
+                    <?php endwhile;?>
+                <?php else: ?>
+                    <p class="no-data">No Facilities Yet</p>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <div class="container recent-reservation">
+            <div class="reservation-row">
+                <p>Recent Reservation</p>
+                <div class="search-form">
+                    <form action="" method="get">
+                        <input type="text" name="name" id="name" placeholder="Search name">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            <div class="reservation-table">
+                <p class="no-data">No Reservation Yet</p>
+            </div>
         </div>
     </main>
 </body>
