@@ -12,7 +12,7 @@
 }
 
 .admin-subnav-inner a {
-    color: #2C3E50;
+    color: #2c3e509c;
     text-decoration: none;
     font-weight: 600;
     font-size: .875rem;
@@ -21,7 +21,7 @@
 }
 
 .admin-subnav-inner a:hover {
-    color: #fff;
+    color: #2C3E50;
 }
 
 .admin-subnav-inner a.is-active {
