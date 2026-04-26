@@ -1,0 +1,150 @@
+.main-booking {
+    display: block;
+}
+
+.header-block,
+.facility-form-wrapper {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 1rem 0;
+    gap: 1rem;
+}
+
+.header-block {
+    text-align: center;
+}
+
+.facility-form-wrapper{
+    display: flex;
+}
+
+.facility-card-selector {
+    width: 60%;
+}
+
+.facility-card {
+    display: flex;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.2rem;
+    border: 2px solid transparent;
+}
+
+.facility-card img {
+    width: 100px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.card-info {
+    padding: 0 1rem;
+}
+
+.card-info h3 {
+    color: #2C3E50;
+}
+
+
+.card-info p {
+    color: #7F8C8D;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.card-info .rate {
+    font-size: 1rem;
+    color: #27AE60;
+    font-weight: 900;
+}
+
+.card-info .more-detail {
+    font-weight: 700;
+}
+
+.booking-form {
+    padding: 1.5rem;
+    background-color: #fff;
+    width: 40%;
+    border-radius: 1rem;
+    border: 4px solid transparent;
+    border-top-color: #27AE60;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+.form-row {
+    width: 100%;
+    display: block;
+    
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.35rem;
+    color: #1c1917;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #d6d3d1;
+    border-radius: 10px;
+    font: inherit;
+    background: #ffffff;
+    margin-bottom: 1rem;
+}
+
+textarea {
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 100%;
+    min-height: 100px;
+}
+
+.form-btn {
+    padding: 0.6rem 0.75rem;
+    border-radius: 10px;
+    outline: none;
+    color: #fff;
+    background-color: #27AE60;
+    font-size: 16px;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+}
+
+.facility-card:hover {
+    border-color: #aed6b7;
+    box-shadow: 0 4px 16px rgba(113, 179, 96, 0.12);
+    cursor: pointer;
+}
+
+.facility-card.active {
+    border-color: #27AE60;
+    box-shadow: 0 4px 16px rgba(49, 107, 47, 0.12);
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .facility-form-wrapper {
+        flex-direction: column;
+    }
+
+    .booking-form {
+        width: 100%;
+        order: 1;
+    }
+
+    .facility-card-selector {
+        width: 100%;
+        order: 2;
+    }
+}   
