@@ -34,12 +34,14 @@ $result = $stmt->get_result();
     </header>   
     
     <main class="main-booking">
+
         <div class="header-block">
             <h2>Reserve your stay</h2>
             <p>select your preferred accommodation and fill out the details below</p>
         </div>
+
         <div class="facility-card-selector">
-            <div class="facility-card">
+            <div class="facility-card" data-value="<?= e($row['name']) ?>">
                 <?php if($result->num_rows > 0): ?>
                     <?php while($row = $result->fetch_assoc()): ?>
                         <div class="facility-card">
@@ -58,12 +60,42 @@ $result = $stmt->get_result();
                     <p class="no-data">No Facilities Yet</p>
                 <?php endif; ?>
             </div>
+
             <div class="booking-form">
                 <div class="form-row">
                     <label for="fullname">Full Name</label>
-                    <input type="text" name="fullname" id="fullname">
+                    <input type="text" name="fullname" id="fullname" placeholder="e.g. Juan Dela Cruz">
+                </div>  
+                <div class="form-row">
+                    <label for="number">Number</label>
+                    <input type="text" name="number" id="number" placeholder="0912 345 6789" required>
+                </div>  
+                <div class="form-row">
+                    <label for="check-in-date">Check-in Date</label>
+                    <input type="date" name="check-in-date" id="check-in-date" required>
+                </div>  
+                <div class="form-row">
+                    <label for="check-out-date">Check-out Date</label>
+                    <input type="date" name="check-out-date" id="check-out-date" required>
+                </div>
+                <div class="form-row">
+                    <label for="facility">Select accommodation</label>
+                    <select name="facility" id="facility">
+                        <option value="">Choose Accommodation</option>
+                        <?php
+                        $result->data_seek(0);
+                        while($row = $result->fetch_assoc()):
+                        ?>
+                        <option value="<?= e($row['name']) ?>"><?= e($row['name']) ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>  
+                <div class="form-row">
+                    <label for="request">Special Request</label>
+                    <textarea name="request" id="request"></textarea>
                 </div>  
             </div>
+
         </div>
     </main>
 
