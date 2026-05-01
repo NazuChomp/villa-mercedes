@@ -11,6 +11,8 @@ $stmt = $conn->prepare("SELECT * FROM facilities");
 $stmt->execute();
 $result = $stmt->get_result();
 
+$total_revenue = 0;
+$booking_count = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,6 +80,17 @@ $result = $stmt->get_result();
                     <th>Paid revenue (PHP)</th>
                     <th>Paid booking count</th>
                 </thead>
+                <tbody>
+                    <?php if($result->num_rows > 0): ?>
+                        <?php while($row = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?= e($row['name']) ?></td>
+                                <td><?= e(number_format($total_revenue, 2)) ?></td>
+                                <td><?= e($booking_count) ?></td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
+                </tbody>
             </table>
         </section>
     </main>
