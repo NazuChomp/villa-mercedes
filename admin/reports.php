@@ -22,6 +22,7 @@ $booking_count = 0;
     <title>Reports-admin|Villa Mercedes</title>
     <link rel="stylesheet" href="../resources/css/header-footer.css">
     <link rel="stylesheet" href="../resources/css/admin-nav.css">
+    <link rel="stylesheet" href="../resources/css/admin-reports.css">
 </head>
 <body>
     <header>
@@ -52,20 +53,20 @@ $booking_count = 0;
                 <h2>Reports</h2>
                 <p>Real-time summaries: revenue by facility and peak reservation days (search by date range).</p>
             </div>
-            <button type="button" onclick="window.print()">Print Report</button>
+            <button onclick="window.print()" class="btn print">Print Report</button>
         </div>
         <form action="" method="GET">
-            <div class="form-row">
+            <div>
                 <label for="date-from">From</label>
                 <input type="date" name="date-from" id="date-from">
             </div>
-            <div class="form-row">
+            <div>
                 <label for="date-to">To</label>
                 <input type="date" name="date-to" id="date-to">
             </div>
-            <div class="form-row">
+            <div class="action-row">
                 <button type="submit" class="btn primary">Apply Range</button>
-                <a href="<?= url('admin/reports.php') ?>">Clear</a>
+                <a href="<?= url('admin/reports.php') ?>" class="btn clear">Clear</a>
             </div>
         </form>
         <section class="reports-section">
@@ -85,7 +86,7 @@ $booking_count = 0;
                         <?php while($row = $result->fetch_assoc()): ?>
                             <tr>
                                 <td><?= e($row['name']) ?></td>
-                                <td><?= e(number_format($total_revenue, 2)) ?></td>
+                                <td><?= e('₱' . number_format($total_revenue, 2)) ?></td>
                                 <td><?= e($booking_count) ?></td>
                             </tr>
                         <?php endwhile; ?>
