@@ -29,7 +29,6 @@
     font-weight: 700;
     border: none;
     cursor: pointer;
-    white-space: nowrap;
 }
 
 .print {
@@ -122,7 +121,7 @@ table tr:last-child  td:last-child  { border-bottom-right-radius: 10px; }
 
 @media print {
     header, nav, .print, form {
-        display: none;
+        display: none !important;
     }
 }
 
