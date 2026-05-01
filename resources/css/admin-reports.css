@@ -1,0 +1,176 @@
+.reports-main {
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.page-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.page-head h2 {
+    color: #2C3E50;
+    margin-bottom: 2px;
+}
+
+.page-head p,
+.reports-section p {
+    color: #7F8C8D;
+    font-size: small;
+}
+
+.btn {
+    padding: 0.6rem 0.75rem;
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.print {
+    padding: 1rem 1.2rem;
+    width: 8%;
+    border: 1px solid #D6D3D1;
+    background-color: #fff;
+}
+
+input {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #d6d3d1;
+    border-radius: 10px;
+    font: inherit;
+    background: #ffffff;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.35rem;
+    color: #1c1917;
+}
+
+form {
+    margin-bottom: 10px;
+    display: flex;
+    align-items:end;
+    gap: 15px;
+}
+
+.action-row {
+    display: flex;
+    gap: 12px;
+}
+
+.primary {
+    width: 100%;
+    background-color: #0c5749;
+    color: #fff;
+}
+
+.clear {
+    color: #1c1917;
+    border: 1px solid #D6D3D1;
+    background-color: #fff;
+    text-decoration: none;
+}
+
+.reports-section h2 {
+    font-size: larger;
+    padding: 10px 0;
+    border: 2.8px solid transparent;
+    border-bottom-color: #0c5749;
+}
+
+.reports-section p {
+    padding: 15px 0;
+    font-size: medium;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    min-width: 420px;
+}
+
+thead, th, td, tr {
+    border: 1.5px solid transparent;
+    text-align: left;
+    border-bottom-color: #D6D3D1;
+    background-color: #fff;
+    padding: 10px;
+
+}
+
+thead, th{
+    background-color: #FAFAF9;
+}
+
+/* Rounding the top-left cell */
+table tr:first-child th:first-child { border-top-left-radius: 10px; }
+table tr:first-child th:last-child  { border-top-right-radius: 10px; }
+table tr:last-child  td:first-child { border-bottom-left-radius: 10px; }
+table tr:last-child  td:last-child  { border-bottom-right-radius: 10px; }
+
+@media print {
+    header, nav, .print, form {
+        display: none;
+    }
+}
+
+/* ── Tablet ── */
+@media (max-width: 768px) {
+    .reports-main {
+        padding: 1rem;
+    }
+ 
+    .page-head {
+        margin-bottom: 24px;
+    }
+ 
+    form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+ 
+    .form-row {
+        flex: 1 1 100%;
+    }
+ 
+    .action-row {
+        flex-direction: column;
+    }
+ 
+    .btn,
+    .clear {
+        width: 100%;
+        text-align: center;
+        display: block;
+        padding: 0.65rem;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-head h2 {
+        font-size: 1.2rem;
+    }
+ 
+    .reports-section p {
+        font-size: 0.875rem;
+    }
+ 
+    thead th,
+    tbody td {
+        padding: 8px 10px;
+        font-size: 0.875rem;
+    }
+}
