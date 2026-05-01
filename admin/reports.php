@@ -39,5 +39,14 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <a href="<?= e(url('index.php')) ?>" target="_blank" >View site</a>
         </div>
     </nav>
+    <main class="reports-main">
+        <div class="page-head">
+            <div>
+                <h2>Reports</h2>
+                <p>Real-time summaries: revenue by facility and peak reservation days (search by date range).</p>
+            </div>
+            <button type="button" onclick="window.print()">Print Report</button>
+        </div>
+    </main>
 </body>
 </html>
