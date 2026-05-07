@@ -35,6 +35,7 @@ $table_data_result = $table_data->get_result();
     <title>Booking-admin|Villa Mercedes</title>
     <link rel="stylesheet" href="../resources/css/header-footer.css">
     <link rel="stylesheet" href="../resources/css/admin-nav.css">
+    <link rel="stylesheet" href="../resources/css/admin-booking.css">
 </head>
 <body>
 
@@ -44,7 +45,7 @@ $table_data_result = $table_data->get_result();
         <div class="header-nav">
             <a href="<?= e(url('index.php')) ?>" class="<?= $currentPage === 'index.php' ? 'is-active' : '' ?>">Home</a>
             <a href="<?= e(url('book.php')) ?>" class="<?= $currentPage === 'book.php' ? 'is-active' : '' ?>">Boook</a>
-            <a href="<?= e(url('login.php')) ?>" class="<?= $currentPage === 'dashboard.php' ? 'is-active' : '' ?>">
+            <a href="<?= e(url('login.php')) ?>" class="<?= e('is-active') ?>">
                 <?= isset($_SESSION['user']) ? 'Dashboard Management' : 'Login' ?>
             </a>
         </div>
@@ -64,11 +65,11 @@ $table_data_result = $table_data->get_result();
 <main class="admin-booking">
     <div class="page-head">
         <div>
-            <h1>Bookings</h1>
+            <h2>Bookings</h2>
             <p>Search, filter, and maintain reservations.</p>
         </div>
         <?php if ($editRow): ?>
-            <a class="cancel-btn" href="<?= e(url('admin/bookings.php')) ?>">Cancel edit</a>
+            <a class="cancel-btn btn" href="<?= e(url('admin/bookings.php')) ?>">Cancel edit</a>
         <?php endif; ?>
     </div>
 
@@ -107,7 +108,7 @@ $table_data_result = $table_data->get_result();
                 <label for="search-input">Search</label>
                 <input type="text" name="search-input" id="search-input">
             </div>
-            <button class="apply-btn">Apply</button>
+            <button class="apply-btn btn">Apply</button>
         </form>
     </div>
 
@@ -178,7 +179,7 @@ $table_data_result = $table_data->get_result();
                     <label for="notes">Notes</label>
                     <textarea name="notes" id="notes"><?= $editRow ? e($editRow['notes']) : '' ?></textarea>
                 </div>
-                <button type="submit"><?= !$editRow ? 'Create Booking' : 'Update Booking' ?></button>
+                <button type="submit" class="btn submit"><?= !$editRow ? 'Create Booking' : 'Update Booking' ?></button>
             </form>
         </div>
 
@@ -205,16 +206,21 @@ $table_data_result = $table_data->get_result();
                                 </td>
                                 <td><?= e($table_row['facility_name']) ?></td>
                                 <td><?= e($table_row['date_start'] . ' → ' . $table_row['date_end']) ?></td>
-                                <td><?= e($table_row['status']) ?></td>
+                                <td>
+                                    <span class="status-badge status-<?= strtolower(e($table_row['status'])) ?>">
+                                        <?= strtoupper(e($table_row['status'])) ?>
+                                    </span>
+                                </td>
                                 <td><?= e('₱' . $table_row['payment_amount'] . ' · ' . $table_row['payment_status']) ?></td>
                                 <td>
-                                    <a href="<?= e(url('admin/bookings.php?edit=' . (int) $table_row['id'])) ?>" class="edit-btn">Edit</a>
-                                    <form action="../repositories/bookingRepository.php" method="POST" style="display:inline;"
-                                        onsubmit="return confirm('Delete this booking?')">
-                                        <input type="hidden" name="booking_id" value="<?= (int) $table_row['id'] ?>">
-                                        <input type="hidden" name="action" value="delete">
-                                        <button type="submit" class="delete-btn">Delete</button>
-                                    </form>
+                                    <div class="action-cell">
+                                        <a href="<?= e(url('admin/bookings.php?edit=' . (int) $table_row['id'])) ?>" class="edit-btn">Edit</a>
+                                        <form action="" method="POST" onsubmit="return confirm('Delete this booking?')">
+                                            <input type="hidden" name="booking_id" value="<?= (int) $table_row['id'] ?>">
+                                            <input type="hidden" name="action" value="delete">
+                                            <button type="submit" class="delete-btn">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
