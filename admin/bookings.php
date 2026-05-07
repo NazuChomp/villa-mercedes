@@ -7,6 +7,10 @@ require_once '../utils/booking-functions.php';
 $currentPage = basename($_SERVER['PHP_SELF']);
 
 $editRow = null;
+$conn = connection();
+$stmt = $conn->prepare("SELECT * FROM facilities");
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +57,44 @@ $editRow = null;
         <?php endif; ?>
     </div>
 
+    <div class="filters">
+        <form action="" method="get">
+            <div class="form-row">
+                <label for="facility">Facility</label>
+                <select name="facility" id="facility">
+                    <option value="">All</option>
+                    <?php
+                    while($row = $result->fetch_assoc()):
+                    ?>
+                    <option value="<?= e($row['id']) ?>"><?= e($row['name']) ?></option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="status">Status</label>
+                <select name="status" id="status">
+                    <option value="">All</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Cancel">Cancel</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="from-date">From</label>
+                <input type="date" id="from-date" name="from-date">
+            </div>
+            <div class="form-row">
+                <label for="to-date">To</label>
+                <input type="date" name="to-date" id="to-date">
+            </div>
+            <div class="form-row">
+                <label for="search-input">Search</label>
+                <input type="text" name="search-input" id="search-input">
+            </div>
+            <button class="apply-btn">Apply</button>
+        </form>
+    </div>
 </main>
 
 </body>
