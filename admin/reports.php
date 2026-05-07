@@ -3,7 +3,6 @@
 session_start();
 require_once '../utils/helper.php';
 require_once '../database/database.php';
-require_once '../utils/booking-functions.php';
 $currentPage = basename($_SERVER['PHP_SELF']);
 
 $conn =connection();
