@@ -31,6 +31,8 @@ $status = 'Occupied';
     <title>Admin-Facility | Villa Mercedes</title>
     <link rel="stylesheet" href="../resources/css/header-footer.css">
     <link rel="stylesheet" href="../resources/css/admin-nav.css">
+    <link rel="stylesheet" href="../reservation/css/booking.css">
+    <link rel="stylesheet" href="../resources/css/admin-facilities.css">
 </head>
 <body>
     
@@ -64,7 +66,7 @@ $status = 'Occupied';
             <p>Manage listings, photos, and rates.</p>
         </div>
         <?php if ($editRow): ?>
-            <a class="cancel-btn btn" href="<?= e(url('admin/bookings.php')) ?>">Cancel edit</a>
+            <a class="cancel-btn btn" href="<?= e(url('admin/facilities.php')) ?>">Cancel edit</a>
         <?php endif; ?>
     </div>
     
@@ -103,8 +105,50 @@ $status = 'Occupied';
                         <option value="Per Session">Per Session</option>
                     </select>
                 </div>
-                <button type="submit">Add Facility</button>
+                <button type="submit"><?= !$editRow ? 'Add Facility' : 'Save Changes' ?></button>
             </form>
+        </div>
+
+        <div class="facility-table">
+            <h2>Facilities</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Rate</th>
+                        <th>Capacity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if($result->num_rows > 0): ?>
+                        <?php while($table_row = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td>
+                                    <img src="<?= e(url('resources/img/') . $table_row['image_filename']) ?>"
+                                     alt="$table_row['image_filename']">
+                                </td>
+                                <td><?= e($table_row['name']) ?></td>
+                                <td><?= e($table_row['rate_amount']) ?></td>
+                                <td><?= e($table_row['capacity']) ?></td>
+                                <td>
+                                    <div class="action-cell">
+                                        <a href="<?= e(url('admin/facilities.php?edit=' . (int) $table_row['id'])) ?>" class="edit-btn">Edit</a>
+                                        <form action="" method="POST" onsubmit="return confirm('Delete this Facility?')">
+                                            <input type="hidden" name="facility_id" value="<?= (int) $table_row['id'] ?>">
+                                            <input type="hidden" name="action" value="delete">
+                                            <button type="submit" class="delete-btn">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <p class="no-data">No Facilities Yet</p>
+                    <?php endif; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </main>
