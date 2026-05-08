@@ -233,7 +233,7 @@ $table_data_result = $table_data->get_result();
                             </tr>
                         <?php endwhile; ?>
                     <?php else: ?>
-                        <p class="no-data">No Facilities Yet</p>
+                        <p class="no-data">No Bookings Yet</p>
                     <?php endif; ?>
                 </tbody>
             </table>
