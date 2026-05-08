@@ -76,8 +76,8 @@ $table_data_result = $table_data->get_result();
     <div class="filters">
         <form action="" method="get">
             <div class="form-row">
-                <label for="filter-facility">Facility</label>
-                <select name="filter-facility" id="filter-facility">
+                <label for="filter_facility">Facility</label>
+                <select name="filter_facility" id="filter_facility">
                     <option value="">All</option>
                     <?php
                     while($row = $result->fetch_assoc()):
@@ -87,8 +87,8 @@ $table_data_result = $table_data->get_result();
                 </select>
             </div>
             <div class="form-row">
-                <label for="filter-status">Status</label>
-                <select name="filter-status" id="filter-status">
+                <label for="filter_status">Status</label>
+                <select name="filter_status" id="filter_status">
                     <option value="">All</option>
                     <option value="Pending">Pending</option>
                     <option value="Confirmed">Confirmed</option>
@@ -97,16 +97,16 @@ $table_data_result = $table_data->get_result();
                 </select>
             </div>
             <div class="form-row">
-                <label for="from-date">From</label>
-                <input type="date" id="from-date" name="from-date">
+                <label for="from_date">From</label>
+                <input type="date" id="from_date" name="from_date">
             </div>
             <div class="form-row">
-                <label for="to-date">To</label>
-                <input type="date" name="to-date" id="to-date">
+                <label for="to_date">To</label>
+                <input type="date" name="to_date" id="to_date">
             </div>
             <div class="form-row">
-                <label for="search-input">Search</label>
-                <input type="text" name="search-input" id="search-input">
+                <label for="search_input">Search</label>
+                <input type="text" name="search_input" id="search_input">
             </div>
             <button class="apply-btn btn">Apply</button>
         </form>
@@ -119,14 +119,17 @@ $table_data_result = $table_data->get_result();
                 <?php if ($editRow): ?>
                     <input type="hidden" name="booking_id" value="<?= $editRow['id'] ?>">
                 <?php endif; ?>
+
                 <div class="form-row">
                     <label for="name">Guest Name</label>
                     <input type="text" name="name" id="name" value="<?= $editRow ? e($editRow['guest_name']) : '' ?>">
                 </div>
+
                 <div class="form-row">
-                    <label for="phone-number">Phone Number</label>
-                    <input type="text" name="phone-number" id="phone-number" value="<?= $editRow ? e($editRow['phone_number']) : '' ?>">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="text" name="phone_number" id="phone_number" value="<?= $editRow ? e($editRow['phone_number']) : '' ?>">
                 </div>
+
                 <div class="form-row">
                     <label for="facility">Facility</label>
                     <select name="facility" id="facility">
@@ -139,16 +142,18 @@ $table_data_result = $table_data->get_result();
                         <?php endwhile; ?>
                     </select>
                 </div>
+
                 <div class="form-row-2">
                     <div>
-                        <label for="start-date">Start</label>
-                        <input type="date" name="start-date" id="start-date" value="<?= $editRow ? e($editRow['date_start']) : '' ?>">
+                        <label for="start_date">Start</label>
+                        <input type="date" name="start_date" id="start_date" value="<?= $editRow ? e($editRow['date_start']) : '' ?>">
                     </div>
                     <div>
-                        <label for="end-date">End</label>
-                        <input type="date" name="end-date" id="end-date" value="<?= $editRow ? e($editRow['date_end']) : '' ?>">
+                        <label for="end_date">End</label>
+                        <input type="date" name="end_date" id="end_date" value="<?= $editRow ? e($editRow['date_end']) : '' ?>">
                     </div>
                 </div>
+
                 <div class="form-row-2">
                     <div>
                         <label for="status">Status</label>
@@ -171,14 +176,17 @@ $table_data_result = $table_data->get_result();
                         </select>
                     </div>
                 </div>
+
                 <div class="form-row">
                     <label for="amount">Amount</label>
                     <input type="number" name="amount" id="amount" value="<?= $editRow ? e($editRow['payment_amount']) : '' ?>">
                 </div>
+
                 <div class="form-row">
                     <label for="notes">Notes</label>
                     <textarea name="notes" id="notes"><?= $editRow ? e($editRow['notes']) : '' ?></textarea>
                 </div>
+
                 <button type="submit" class="btn submit"><?= !$editRow ? 'Create Booking' : 'Update Booking' ?></button>
             </form>
         </div>
@@ -225,7 +233,7 @@ $table_data_result = $table_data->get_result();
                             </tr>
                         <?php endwhile; ?>
                     <?php else: ?>
-                        <p class="no-data">No Facilities Yet</p>
+                        <p class="no-data">No Bookings Yet</p>
                     <?php endif; ?>
                 </tbody>
             </table>
