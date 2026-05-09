@@ -5,7 +5,6 @@ require_once '../database/database.php';
 $currentPage = basename($_SERVER['PHP_SELF']);
 
 $conn =connection();
-
 $editId = isset($_GET['edit']) ? (int)$_GET['edit'] : null;
 $editRow = null;
 
@@ -73,30 +72,30 @@ $status = 'Occupied';
     <div class="form-facilities-wrapper">
         <div class="facility-form">
             <h2><?= !$editRow ? 'Add Facility' : 'Edit Facility' ?></h2>
-            <form action="" method="post">
+            <form action="../repositories/facilityRepository.php" method="post" enctype="multipart/form-data">
                 <?php if ($editRow): ?>
-                    <input type="hidden" name="booking_id" value="<?= $editRow['id'] ?>">
+                    <input type="hidden" name="facility_id" value="<?= $editRow['id'] ?>">
                 <?php endif; ?>
                 <div class="form-row">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name">
+                    <input type="text" name="name" id="name" value="<?= e($editRow['name'] ?? '')?>">
                 </div>
                 <div class="form-row">
                     <label for="description">Description</label>
-                    <textarea name="description" id="description"></textarea>
+                    <textarea name="description" id="description"><?= e($editRow['description'] ?? '') ?></textarea>
                 </div>
                 <div class="form-row">
                     <label for="facility_photo" class="btn photo-btn">Select Photo</label>
-                    <input type="file" name="facilit_photo" id="facility_photo">
+                    <input type="file" name="facility_photo" id="facility_photo">
                     <p>JPG, PNG, GIF, or WebP · max 2 MB</p>
                 </div>
                 <div class="form-row">
                     <label for="capacity">Capacity</label>
-                    <input type="number" name="capacity" id="capacity">
+                    <input type="number" name="capacity" id="capacity" value="<?= e($editRow['capacity']?? '') ?>">
                 </div>
                 <div class="form-row">
                     <label for="rate">Rate</label>
-                    <input type="number" name="rate" id="rate">
+                    <input type="number" name="rate" id="rate" value="<?= e($editRow['rate_amount'] ?? '') ?>">
                 </div>
                 <div class="form-row">
                     <label for="rate_unit">Rate unit</label>
@@ -127,7 +126,7 @@ $status = 'Occupied';
                             <tr>
                                 <td>
                                     <img src="<?= e(url('resources/img/') . $table_row['image_filename']) ?>"
-                                     alt="$table_row['image_filename']">
+                                    alt="<?=e($table_row['image_filename']) ?>">
                                 </td>
                                 <td><?= e($table_row['name']) ?></td>
                                 <td><?= e($table_row['rate_amount']) ?></td>
@@ -135,7 +134,7 @@ $status = 'Occupied';
                                 <td>
                                     <div class="action-cell">
                                         <a href="<?= e(url('admin/facilities.php?edit=' . (int) $table_row['id'])) ?>" class="edit-btn">Edit</a>
-                                        <form action="" method="POST" onsubmit="return confirm('Delete this Facility?')">
+                                        <form action="../repositories/facilityRepository.php" method="POST" onsubmit="return confirm('Delete this Facility?')">
                                             <input type="hidden" name="facility_id" value="<?= (int) $table_row['id'] ?>">
                                             <input type="hidden" name="action" value="delete">
                                             <button type="submit" class="delete-btn">Delete</button>
