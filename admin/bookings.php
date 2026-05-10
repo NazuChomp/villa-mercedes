@@ -35,21 +35,18 @@ $sql = "
 $params = [];
 $types = "";
 
-/* Facility filter */
 if ($facilityFilter !== '') {
     $sql .= " AND b.facility_id = ?";
     $params[] = $facilityFilter;
     $types .= "i";
 }
 
-/* Status filter */
 if ($statusFilter !== '') {
     $sql .= " AND b.status = ?";
     $params[] = $statusFilter;
     $types .= "s";
 }
 
-/* Date range filter */
 if ($fromDate !== '' && $toDate !== '') {
     $sql .= " AND b.date_start BETWEEN ? AND ?";
     $params[] = $fromDate;
@@ -57,7 +54,6 @@ if ($fromDate !== '' && $toDate !== '') {
     $types .= "ss";
 }
 
-/* Search (guest name / phone) */
 if ($searchInput !== '') {
     $sql .= " AND (b.guest_name LIKE ? OR b.phone_number LIKE ?)";
     $params[] = "%$searchInput%";
