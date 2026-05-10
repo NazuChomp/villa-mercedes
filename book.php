@@ -104,5 +104,6 @@ $result = $stmt->get_result();
     </div>
 
 </main>
+    <script src="utils/scripts.js"></script>
 </body>
 </html>
