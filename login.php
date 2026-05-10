@@ -66,7 +66,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="<?= e(url('index.php')) ?>" class="brand-label">Villa Mercedes</a>
             <div class="header-nav">
                 <a href="<?= e(url('index.php')) ?>" class="<?= $currentPage === 'index.php' ? 'is-active' : '' ?>">Home</a>
-                <a href="<?= e(url('book.php')) ?>" class="<?= $currentPage === 'book.php' ? 'is-active' : '' ?>">Boook</a>
+                <a href="<?= e(url('book.php')) ?>" class="<?= $currentPage === 'book.php' ? 'is-active' : '' ?>">Book</a>
                 <a href="<?= e(url('login.php')) ?>" class="<?= $currentPage === 'login.php' ? 'is-active' : '' ?>">
                      <?= isset($_SESSION['user']) ? 'Dashboard Management' : 'Login' ?> 
                 </a>

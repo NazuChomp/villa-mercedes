@@ -27,7 +27,7 @@ $result = $stmt->get_result();
         <a href="<?= e(url('index.php')) ?>" class="brand-label">Villa Mercedes</a>
         <div class="header-nav">
             <a href="<?= e(url('index.php')) ?>" class="<?= $currentPage === 'index.php' ? 'is-active' : '' ?>">Home</a>
-            <a href="<?= e(url('book.php')) ?>" class="<?= $currentPage === 'book.php' ? 'is-active' : '' ?>">Boook</a>
+            <a href="<?= e(url('book.php')) ?>" class="<?= $currentPage === 'book.php' ? 'is-active' : '' ?>">Book</a>
             <a href="<?= e(url('login.php')) ?>" class="<?= $currentPage === 'dashboard.php' ? 'is-active' : '' ?>">
                     <?= isset($_SESSION['user']) ? 'Dashboard Management' : 'Login' ?> 
             </a>
@@ -66,7 +66,7 @@ $result = $stmt->get_result();
 
         </div>
 
-        <form action="" class="booking-form">
+        <form action="repositories/bookingRepository.php" method="POST" class="booking-form">
             <div class="form-row">
                 <label for="fullname">Full Name</label>
                 <input type="text" name="fullname" id="fullname" placeholder="e.g. Juan Dela Cruz" required>
@@ -104,6 +104,5 @@ $result = $stmt->get_result();
     </div>
 
 </main>
-    <script src="utils/scripts.js"></script>
 </body>
 </html>

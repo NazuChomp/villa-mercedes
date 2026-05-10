@@ -184,3 +184,73 @@
         width: 90%;
     }
 }
+.reservation-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.reservation-table th,
+.reservation-table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+}
+
+.reservation-table th {
+    background: #f5f5f5;
+    font-weight: 600;
+}
+
+.reservation-table tr:hover {
+    background: #f9f9f9;
+}
+
+.status {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.Occupied {
+    color: orange;
+    background: rgba(255, 166, 0, 0.15);
+}
+
+.Available {
+    color: green;
+    background: rgba(0, 128, 0, 0.12);
+}
+
+.Pending {
+    color: #cc8a00;
+}
+
+.Confirmed {
+    color: #1e90ff;
+}
+
+.Completed {
+    color: #0a7a3d;
+}
+.clear-button {
+    font-family: 'Segoe UI', Tahoma, "Geneva", Verdana, sans-serif;
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    background: #ccc;
+    color: #000;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.clear-button:hover {
+    background: #bbb;
+}
