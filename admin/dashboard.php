@@ -4,6 +4,8 @@ require_once '../utils/helper.php';
 require_once '../database/database.php';
 $currentPage = basename($_SERVER['PHP_SELF']);
 
+date_default_timezone_set ('Asia/Manila');
+
 $conn =connection();
 $stmt = $conn->prepare("SELECT * FROM facilities");
 $stmt->execute();
@@ -57,7 +59,7 @@ $total_revenue = $revenueResult['total_revenue'] ?? 0;
 $activeStmt = $conn->prepare("
     SELECT COUNT(*) AS total
     FROM bookings
-    WHERE status IN ('Pending', 'Confirmed')
+    WHERE status = 'Confirmed'
 ");
 
 $activeStmt->execute();
@@ -77,12 +79,17 @@ $pendingResult = $pendingStmt->get_result()->fetch_assoc();
 $pending_approval = $pendingResult['total'];
 
 
+$today = date('Y-m-d');
+
 $bookingStmt = $conn->prepare("
     SELECT facility_id
     FROM bookings
-    WHERE status IN ('Pending', 'Confirmed')
+    WHERE status = 'Confirmed'
+    AND DATE(date_start) <= ?
+    AND DATE(date_end) >= ?
 ");
 
+$bookingStmt->bind_param("ss", $today, $today);
 $bookingStmt->execute();
 $bookingResult = $bookingStmt->get_result();
 
