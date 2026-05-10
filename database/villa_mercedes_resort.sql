@@ -53,11 +53,11 @@ CREATE TABLE IF NOT EXISTS `facilities` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table villa_mercedes_resort.facilities: ~4 rows (approximately)
-REPLACE INTO `facilities` (`id`, `name`, `description`, `image_filename`, `capacity`, `rate_amount`, `rate_unit`, `created_at`) VALUES
-	(1, 'Swimming Pool', '', '1778312886_1778296935_villa_mercedes_pool.jpg', 25, 499.00, 'Per Day', '2026-05-09 07:48:06'),
-	(2, 'Chapel', '', '1778312952_1778297670_chapel.jpg', 120, 750.00, 'Per Session', '2026-05-09 07:49:12'),
-	(3, 'Basketball Court', '', '1778340821_basketball_court.jpg', 12, 150.00, 'Per Session', '2026-05-09 15:33:41'),
-	(4, 'Event Place', '', '1778341823_event_place.jpg', 120, 700.00, 'Per Day', '2026-05-09 15:50:23');
+INSERT INTO `facilities` (`id`, `name`, `description`, `image_filename`, `capacity`, `rate_amount`, `rate_unit`, `created_at`) VALUES
+	(9, 'Swimming Pool', '', '1778312886_1778296935_villa_mercedes_pool.jpg', 25, 499.00, 'Per Day', '2026-05-09 07:48:06'),
+	(10, 'Chapel', '', '1778312952_1778297670_chapel.jpg', 120, 750.00, 'Per Session', '2026-05-09 07:49:12'),
+	(11, 'Basketball Court', '', '1778340821_basketball_court.jpg', 12, 150.00, 'Per Session', '2026-05-09 15:33:41'),
+	(12, 'Event Place', '', '1778341823_event_place.jpg', 120, 700.00, 'Per Day', '2026-05-09 15:50:23');
 
 -- Dumping structure for table villa_mercedes_resort.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table villa_mercedes_resort.users: ~1 rows (approximately)
-REPLACE INTO `users` (`id`, `username`, `password_hash`, `full_name`, `created_at`) VALUES
+INSERT INTO `users` (`id`, `username`, `password_hash`, `full_name`, `created_at`) VALUES
 	(1, 'admin', '$2y$10$b9QpSp198ciPycL4itqJ4.09ng.twSXPhpjRA0cyV1i8ELi32iYz6', 'Administrator', '2026-05-09 02:52:36');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
