@@ -1,6 +1,3 @@
-<!-- dito kayo magbackend sa lahat ng may kinalaman booking  -->
-<!-- ilagay nyo nalang sa action attribute yung file path neto -->
-
 <?php
 require_once '../database/database.php';
 
@@ -11,30 +8,50 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$guest_name = trim($_POST['guest_name']);
-$phone_number = trim($_POST['phone_number']);
-$facility_id = (int)$_POST['facility'];
-$date_start = $_POST['date_start'];
-$date_end = $_POST['date_end'];
-$notes = $_POST['request'] ?? null;
+$fullname = trim($_POST['fullname'] ?? '');
+$number   = trim($_POST['number'] ?? '');
+$facility = $_POST['facility'] ?? '';
+$checkin  = $_POST['check-in-date'] ?? '';
+$checkout = $_POST['check-out-date'] ?? '';
+$request  = trim($_POST['request'] ?? '');
+$payment_amount = $_POST['amount'] ?? 0;
+$payment_status = $_POST['payment'] ?? 'Unpaid';
+
+if ($fullname === '' || $number === '' || $facility === '' || $checkin === '' || $checkout === '') {
+    die("Missing required fields.");
+}
+
+
+$stmt = $conn->prepare("SELECT id FROM facilities WHERE name = ?");
+$stmt->bind_param("s", $facility);
+$stmt->execute();
+$res = $stmt->get_result()->fetch_assoc();
+
+$facility_id = $res['id'] ?? null;
+
+if (!$facility_id) {
+    die("Invalid facility selected.");
+}
 
 $stmt = $conn->prepare("
     INSERT INTO bookings
-    (guest_name, phone_number, facility_id, date_start, date_end, status, payment_status, payment_amount, notes)
-    VALUES (?, ?, ?, ?, ?, 'Pending', 'Unpaid', 0, ?)
+    (guest_name, phone_number, facility_id, date_start, date_end, notes, status, payment_amount, payment_status)
+    VALUES (?, ?, ?, ?, ?, ?, 'Pending', ?, ?)
 ");
 
 $stmt->bind_param(
-    "ssisss",
-    $guest_name,
-    $phone_number,
+    "ssisssds",
+    $fullname,
+    $number,
     $facility_id,
-    $date_start,
-    $date_end,
-    $notes
+    $checkin,
+    $checkout,
+    $request,
+    $payment_amount,
+    $payment_status
 );
 
 $stmt->execute();
 
-header("Location: ../book.php");
+header("Location: ../book.php?success=1");
 exit;

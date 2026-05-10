@@ -44,7 +44,7 @@ $table_data_result = $table_data->get_result();
         <a href="<?= e(url('index.php')) ?>" class="brand-label">Villa Mercedes</a>
         <div class="header-nav">
             <a href="<?= e(url('index.php')) ?>" class="<?= $currentPage === 'index.php' ? 'is-active' : '' ?>">Home</a>
-            <a href="<?= e(url('book.php')) ?>" class="<?= $currentPage === 'book.php' ? 'is-active' : '' ?>">Boook</a>
+            <a href="<?= e(url('book.php')) ?>" class="<?= $currentPage === 'book.php' ? 'is-active' : '' ?>">Book</a>
             <a href="<?= e(url('login.php')) ?>" class="<?= e('is-active') ?>">
                 <?= isset($_SESSION['user']) ? 'Dashboard Management' : 'Login' ?>
             </a>
@@ -115,7 +115,7 @@ $table_data_result = $table_data->get_result();
     <div class="form-result-wrapper">
         <div class="booking-form">
             <h2><?= !$editRow ? 'New Booking' : 'Edit Booking' ?></h2>
-            <form action="../repositories/bookingRepository.php" method="POST">
+            <form action="../repositories/adminbookingRepository.php" method="POST">
                 <?php if ($editRow): ?>
                     <input type="hidden" name="booking_id" value="<?= $editRow['id'] ?>">
                 <?php endif; ?>
@@ -223,7 +223,7 @@ $table_data_result = $table_data->get_result();
                                 <td>
                                     <div class="action-cell">
                                         <a href="<?= e(url('admin/bookings.php?edit=' . (int) $table_row['id'])) ?>" class="edit-btn">Edit</a>
-                                        <form action="" method="POST" onsubmit="return confirm('Delete this booking?')">
+                                        <form action="../repositories/adminbookingRepository.php" method="POST" onsubmit="return confirm('Delete this booking?')">
                                             <input type="hidden" name="booking_id" value="<?= (int) $table_row['id'] ?>">
                                             <input type="hidden" name="action" value="delete">
                                             <button type="submit" class="delete-btn">Delete</button>
