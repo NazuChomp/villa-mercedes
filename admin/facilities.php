@@ -144,7 +144,11 @@ $status = 'Occupied';
                             </tr>
                         <?php endwhile; ?>
                     <?php else: ?>
-                        <p class="no-data">No Facilities Yet</p>
+                            <tr>
+                                <td colspan="6" class="no-data">
+                                    No Bookings Yet
+                                </td>
+                            </tr>
                     <?php endif; ?>
                 </tbody>
             </table>

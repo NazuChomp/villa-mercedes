@@ -278,7 +278,11 @@ $table_data_result = $stmt->get_result();
                             </tr>
                         <?php endwhile; ?>
                     <?php else: ?>
-                        <p class="no-data">No Bookings Yet</p>
+                            <tr>
+                                <td colspan="6" class="no-data">
+                                    No Bookings Yet
+                                </td>
+                            </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
