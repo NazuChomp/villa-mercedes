@@ -3,15 +3,16 @@
 session_start();
 require_once '../utils/helper.php';
 require_once '../database/database.php';
-$currentPage = basename($_SERVER['PHP_SELF']);
 
-$conn =connection();
+$currentPage = basename($_SERVER['PHP_SELF']);
+$conn = connection();
+
+$dateFrom = $_GET['date-from'] ?? '';
+$dateTo   = $_GET['date-to'] ?? '';
+
 $stmt = $conn->prepare("SELECT * FROM facilities");
 $stmt->execute();
-$result = $stmt->get_result();
-
-$total_revenue = 0;
-$booking_count = 0;
+$facilities = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,15 +82,51 @@ $booking_count = 0;
                     <th>Paid booking count</th>
                 </thead>
                 <tbody>
-                    <?php if($result->num_rows > 0): ?>
-                        <?php while($row = $result->fetch_assoc()): ?>
-                            <tr>
-                                <td><?= e($row['name']) ?></td>
-                                <td><?= e('₱' . number_format($total_revenue, 2)) ?></td>
-                                <td><?= e($booking_count) ?></td>
-                            </tr>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
+                    <?php if ($facilities->num_rows > 0): ?>
+                        <?php while ($row = $facilities->fetch_assoc()): ?>
+
+                            <?php
+                        $sql = "
+                            SELECT 
+                            COUNT(*) AS total_bookings,
+                            COALESCE(SUM(payment_amount), 0) AS total_revenue
+                            FROM bookings
+                            WHERE facility_id = ?
+                            AND status IN ('Confirmed', 'Completed')
+                            AND payment_status = 'Paid'
+                            ";
+
+                    if ($dateFrom !== '' && $dateTo !== '') {
+                        $sql .= " AND date_start BETWEEN ? AND ?";
+                     }
+
+                    $stmt2 = $conn->prepare($sql);
+
+                    if ($dateFrom !== '' && $dateTo !== '') {
+                        $stmt2->bind_param("iss", $row['id'], $dateFrom, $dateTo);
+                    } else {
+                        $stmt2->bind_param("i", $row['id']);
+                    }
+
+                    $stmt2->execute();
+                        $data = $stmt2->get_result()->fetch_assoc();
+
+                     $total_revenue = $data['total_revenue'] ?? 0;
+                    $booking_count = $data['total_bookings'] ?? 0;
+                    ?>
+
+                <tr>
+                    <td><?= e($row['name']) ?></td>
+                    <td>₱<?= number_format($total_revenue, 2) ?></td>
+                    <td><?= $booking_count ?></td>
+                </tr>
+
+                    <?php endwhile; ?>
+            <?php else: ?>
+                <tr>
+                        <td colspan="3" class="no-data">No facilities found</td>
+                </tr>
+                        <?php endif; ?>
                 </tbody>
             </table>
         </section>

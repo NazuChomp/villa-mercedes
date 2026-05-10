@@ -5,6 +5,12 @@ require_once '../utils/helper.php';
 require_once '../database/database.php';
 $currentPage = basename($_SERVER['PHP_SELF']);
 
+$facilityFilter = $_GET['filter_facility'] ?? '';
+$statusFilter   = $_GET['filter_status'] ?? '';
+$fromDate       = $_GET['from_date'] ?? '';
+$toDate         = $_GET['to_date'] ?? '';
+$searchInput    = $_GET['search_input'] ?? '';
+
 $editId = isset($_GET['edit']) ? (int)$_GET['edit'] : null;
 $editRow = null;
 
@@ -19,13 +25,56 @@ $stmt = $conn->prepare("SELECT * FROM facilities");
 $stmt->execute();
 $result = $stmt->get_result();
 
-$table_data = $conn->prepare("
-    SELECT b.*, f.name AS facility_name 
+$sql = "
+    SELECT b.*, f.name AS facility_name
     FROM bookings b
     LEFT JOIN facilities f ON b.facility_id = f.id
-");
-$table_data->execute();
-$table_data_result = $table_data->get_result();
+    WHERE 1=1
+";
+
+$params = [];
+$types = "";
+
+/* Facility filter */
+if ($facilityFilter !== '') {
+    $sql .= " AND b.facility_id = ?";
+    $params[] = $facilityFilter;
+    $types .= "i";
+}
+
+/* Status filter */
+if ($statusFilter !== '') {
+    $sql .= " AND b.status = ?";
+    $params[] = $statusFilter;
+    $types .= "s";
+}
+
+/* Date range filter */
+if ($fromDate !== '' && $toDate !== '') {
+    $sql .= " AND b.date_start BETWEEN ? AND ?";
+    $params[] = $fromDate;
+    $params[] = $toDate;
+    $types .= "ss";
+}
+
+/* Search (guest name / phone) */
+if ($searchInput !== '') {
+    $sql .= " AND (b.guest_name LIKE ? OR b.phone_number LIKE ?)";
+    $params[] = "%$searchInput%";
+    $params[] = "%$searchInput%";
+    $types .= "ss";
+}
+
+$sql .= " ORDER BY b.id DESC";
+
+$stmt = $conn->prepare($sql);
+
+if (!empty($params)) {
+    $stmt->bind_param($types, ...$params);
+}
+
+$stmt->execute();
+$table_data_result = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">
