@@ -14,14 +14,14 @@
     border-radius: 1em;
 }
 
-.page-head h2 {
+.page-head h1 {
     color: #2C3E50;
     margin-bottom: 2px;
 }
 
 .page-head p {
     color: #7F8C8D;
-    font-size: small;
+    font-size: large;
 }
 
 .btn {

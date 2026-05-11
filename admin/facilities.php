@@ -61,7 +61,7 @@ $status = 'Occupied';
 <main class="facility-main">
     <div class="page-head">
         <div>
-            <h2>Facilities</h2>
+            <h1>Facilities</h1>
             <p>Manage listings, photos, and rates.</p>
         </div>
         <?php if ($editRow): ?>

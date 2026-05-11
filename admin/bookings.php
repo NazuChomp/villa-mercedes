@@ -120,7 +120,7 @@ $table_data_result = $stmt->get_result();
     <?php endif; ?>
     <div class="page-head">
         <div>
-            <h2>Bookings</h2>
+            <h1>Bookings</h1>
             <p>Search, filter, and maintain reservations.</p>
         </div>
         <?php if ($editRow): ?>

@@ -12,6 +12,15 @@
     padding: 1rem 0;
 }
 
+.page-head h1 {
+    color: #2C3E50;
+}
+
+.page-head p {
+    color: #7F8C8D;
+    font-size: large;
+}
+
 .page-head {
     padding: 0;
     margin-top: 0;

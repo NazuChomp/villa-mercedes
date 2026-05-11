@@ -50,7 +50,7 @@ $facilities = $stmt->get_result();
     <main class="reports-main">
         <div class="page-head">
             <div>
-                <h2>Reports</h2>
+                <h1>Reports</h1>
                 <p>Real-time summaries: revenue by facility and peak reservation days (search by date range).</p>
             </div>
             <button onclick="window.print()" class="btn print">Print Report</button>
