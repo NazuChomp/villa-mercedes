@@ -69,13 +69,14 @@ header {
     border: 1px solid #d6d3d1;
 }
 
-.err{
+.err {
     background: #fef2f2;
     border: 1px solid #fecaca;
     color: #991b1b;
 }
 
 .ok {
+    color: #367436;
     background: #e7ffe7;
     border: 1px solid #76c776;
 }
