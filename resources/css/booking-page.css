@@ -18,6 +18,13 @@
     display: flex;
 }
 
+.no-data {
+    text-align: center;
+    color: #888;
+    padding: 1rem 0;
+    width: 100%;
+}
+
 .facility-card-selector {
     width: 60%;
 }
