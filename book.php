@@ -16,7 +16,7 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookin | villa-mercedes</title>
+    <title>Booking | villa-mercedes</title>
     <link rel="stylesheet" href="./resources/css/header-footer.css">
     <link rel="stylesheet" href="./resources/css/booking-page.css">
 
@@ -41,6 +41,17 @@ $result = $stmt->get_result();
         <h2>Reserve your stay</h2>
         <p>select your preferred accommodation and fill out the details below</p>
     </div>
+
+    <?php if (isset($_SESSION['flash'])): ?>
+        <div class="msg <?= $_SESSION['flash']['type'] ?>">
+            <ul>
+                <?php foreach ($_SESSION['flash']['text'] as $msg): ?>
+                    <li><?= e($msg) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php unset($_SESSION['flash']); ?>
+    <?php endif; ?> 
 
     <div class="facility-form-wrapper">
         <div class="facility-card-selector">

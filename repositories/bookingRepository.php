@@ -1,5 +1,8 @@
 <?php
+session_start();
 require_once '../database/database.php';
+require_once '../utils/helper.php';
+
 
 $conn = connection();
 
@@ -8,19 +11,58 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$fullname = trim($_POST['fullname'] ?? '');
-$number   = trim($_POST['number'] ?? '');
-$facility = $_POST['facility'] ?? '';
-$checkin  = $_POST['check-in-date'] ?? '';
-$checkout = $_POST['check-out-date'] ?? '';
-$request  = trim($_POST['request'] ?? '');
+$fullname  = trim($_POST['fullname'] ?? '');
+$number    = trim($_POST['number'] ?? '');
+$checkin   = $_POST['check-in-date'] ?? '';
+$checkout  = $_POST['check-out-date'] ?? '';
+$facility  = $_POST['facility'] ?? '';
+$request   = trim($_POST['request'] ?? '');
 $payment_amount = $_POST['amount'] ?? 0;
 $payment_status = $_POST['payment'] ?? 'Unpaid';
 
-if ($fullname === '' || $number === '' || $facility === '' || $checkin === '' || $checkout === '') {
-    die("Missing required fields.");
+// --- Validation ---
+$errors = [];
+
+if (empty($fullname)) {
+    $errors[] = 'Full name is required.';
 }
 
+$cleanNumber = str_replace(' ', '', $number);
+
+if (
+    empty($cleanNumber) ||
+    !ctype_digit($cleanNumber) ||
+    strlen($cleanNumber) < 10 ||
+    strlen($cleanNumber) > 11
+) {
+    $errors[] = 'Please enter a valid phone number.';
+}
+
+if (empty($checkin)) {
+    $errors[] = 'Check-in date is required.';
+}
+
+if (empty($checkout)) {
+    $errors[] = 'Check-out date is required.';
+}
+
+if (!empty($checkin) && strtotime($checkin) < strtotime(date('Y-m-d'))) {
+    $errors[] = 'Check-in date cannot be in the past.';
+}
+
+if (!empty($checkin) && !empty($checkout) && strtotime($checkout) <= strtotime($checkin)) {
+    $errors[] = 'Check-out date must be after check-in date.';
+}
+
+if (empty($facility)) {
+    $errors[] = 'Please select an accommodation.';
+}
+
+if (!empty($errors)) {
+    flash('err', $errors);
+    header('Location: ../book.php');
+    exit;
+}
 
 $stmt = $conn->prepare("SELECT id FROM facilities WHERE name = ?");
 $stmt->bind_param("s", $facility);
@@ -53,5 +95,6 @@ $stmt->bind_param(
 
 $stmt->execute();
 
-header("Location: ../book.php?success=1");
+flash('ok', ['Reservation request sent successfully!']);
+header('Location: ../book.php');
 exit;
