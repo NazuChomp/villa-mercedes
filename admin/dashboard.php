@@ -49,6 +49,8 @@ $revenueStmt = $conn->prepare("
     FROM bookings
     WHERE status = 'Completed'
     AND payment_status = 'Paid'
+    AND MONTH(created_at) = MONTH(CURDATE())
+    AND YEAR(created_at) = YEAR(CURDATE())
 ");
 
 $revenueStmt->execute();
@@ -150,7 +152,7 @@ while ($booking = $bookingResult->fetch_assoc()) {
 
         <div class="container summary-container">
             <div class="summary-card monthly">
-                <p>TOTAL REVENUE</p>
+                <p>MONTHLY REVENUE</p>
                 <h1><?= e('₱' . number_format($total_revenue, 2)) ?></h1>
             </div>
             <div class="summary-card active-booking">
