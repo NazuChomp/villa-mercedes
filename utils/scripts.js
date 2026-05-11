@@ -1,6 +1,7 @@
 const cards = document.querySelectorAll('.facility-card');
 const select = document.getElementById('facility');
 
+// Card click → update select
 cards.forEach(card => {
   card.addEventListener('click', () => {
     const value = card.getAttribute('data-value');
@@ -8,5 +9,17 @@ cards.forEach(card => {
 
     cards.forEach(c => c.classList.remove('active'));
     card.classList.add('active');
+  });
+});
+
+// Select change → highlight matching card
+select.addEventListener('change', () => {
+  const value = select.value;
+
+  cards.forEach(card => {
+    card.classList.remove('active');
+    if (card.getAttribute('data-value') === value) {
+      card.classList.add('active');
+    }
   });
 });
