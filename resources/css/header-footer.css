@@ -60,6 +60,26 @@ header {
     color: #fff;
 }
 
+.msg {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #d6d3d1;
+}
+
+.err{
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+}
+
+.ok {
+    background: #e7ffe7;
+    border: 1px solid #76c776;
+}
+
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
