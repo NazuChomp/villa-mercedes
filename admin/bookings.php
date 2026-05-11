@@ -108,6 +108,16 @@ $table_data_result = $stmt->get_result();
 </nav>
 
 <main class="admin-booking">
+        <?php if (isset($_SESSION['flash'])): ?>
+        <div class="msg <?= $_SESSION['flash']['type'] ?>">
+            <ul>
+                <?php foreach ($_SESSION['flash']['text'] as $msg): ?>
+                    <li><?= e($msg) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php unset($_SESSION['flash']); ?>
+    <?php endif; ?>
     <div class="page-head">
         <div>
             <h2>Bookings</h2>
