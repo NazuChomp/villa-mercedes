@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     if($username === '' || $password === '') {
-        flash('err', 'Required: Username and password');
+        flash('err', ['Required: Username and password']);
         redirect('login.php');
     }
 
@@ -37,13 +37,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             ];
 
             redirect('admin/dashboard.php');
-            flash('ok', 'Login Successfully');
+            flash('ok', ['Login Successfully']);
         } else {
-            flash('err', 'Invalid Credentials');
+            flash('err', ['Invalid Credentials']);
             redirect('login.php');
         }
     } else {
-        flash('err', 'Invalid Credentials');
+        flash('err', ['Invalid Credentials']);
         redirect('login.php');
     }
 }
