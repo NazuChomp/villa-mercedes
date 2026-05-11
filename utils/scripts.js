@@ -1,7 +1,7 @@
 const cards = document.querySelectorAll('.facility-card');
 const select = document.getElementById('facility');
 
-// Card click → update select
+// Card click to update select
 cards.forEach(card => {
   card.addEventListener('click', () => {
     const value = card.getAttribute('data-value');
@@ -12,7 +12,7 @@ cards.forEach(card => {
   });
 });
 
-// Select change → highlight matching card
+// Select change to highlight matching card
 select.addEventListener('change', () => {
   const value = select.value;
 
