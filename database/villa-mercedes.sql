@@ -1,3 +1,0 @@
-CREATE DATABASE villa_mercedes_resort;
-
-USE villa_mercedes_dbperformance_schema
