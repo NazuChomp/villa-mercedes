@@ -35,12 +35,9 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   PRIMARY KEY (`id`),
   KEY `facility_id` (`facility_id`),
   CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`facility_id`) REFERENCES `facilities` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table villa_mercedes_resort.bookings: ~0 rows (approximately)
-INSERT IGNORE INTO `bookings` (`id`, `guest_name`, `phone_number`, `facility_id`, `date_start`, `date_end`, `notes`, `status`, `created_at`, `payment_amount`, `payment_status`) VALUES
-	(6, 'Jimuel Josh Timoteo', '09123456789', 9, '2222-02-22', '2222-02-22', 'Kupal', 'Confirmed', '2026-05-09 18:30:33', 250.00, 'Partial'),
-	(9, 'Timoteo Jimuel Josh', '09123456789', 12, '2026-05-10', '2026-05-11', '', 'Completed', '2026-05-10 07:05:55', 700.00, 'Paid');
 
 -- Dumping structure for table villa_mercedes_resort.facilities
 CREATE TABLE IF NOT EXISTS `facilities` (
@@ -56,11 +53,11 @@ CREATE TABLE IF NOT EXISTS `facilities` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table villa_mercedes_resort.facilities: ~4 rows (approximately)
-INSERT IGNORE INTO `facilities` (`id`, `name`, `description`, `image_filename`, `capacity`, `rate_amount`, `rate_unit`, `created_at`) VALUES
-	(9, 'Swimming Pool', 'Pool ni Kuya', '1778312886_1778296935_villa_mercedes_pool.jpg', 25, 499.00, 'Per Day', '2026-05-09 07:48:06'),
+INSERT INTO `facilities` (`id`, `name`, `description`, `image_filename`, `capacity`, `rate_amount`, `rate_unit`, `created_at`) VALUES
+	(9, 'Swimming Pool', '', '1778312886_1778296935_villa_mercedes_pool.jpg', 25, 499.00, 'Per Day', '2026-05-09 07:48:06'),
 	(10, 'Chapel', '', '1778312952_1778297670_chapel.jpg', 120, 750.00, 'Per Session', '2026-05-09 07:49:12'),
-	(11, 'Basketball Court', 'Court of Appeal', '1778340821_basketball_court.jpg', 12, 150.00, 'Per Session', '2026-05-09 15:33:41'),
-	(12, 'Event Place', 'Event ya', '1778341823_event_place.jpg', 120, 700.00, 'Per Day', '2026-05-09 15:50:23');
+	(11, 'Basketball Court', '', '1778340821_basketball_court.jpg', 12, 150.00, 'Per Session', '2026-05-09 15:33:41'),
+	(12, 'Event Place', '', '1778341823_event_place.jpg', 120, 700.00, 'Per Day', '2026-05-09 15:50:23');
 
 -- Dumping structure for table villa_mercedes_resort.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -73,8 +70,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table villa_mercedes_resort.users: ~0 rows (approximately)
-INSERT IGNORE INTO `users` (`id`, `username`, `password_hash`, `full_name`, `created_at`) VALUES
+-- Dumping data for table villa_mercedes_resort.users: ~1 rows (approximately)
+INSERT INTO `users` (`id`, `username`, `password_hash`, `full_name`, `created_at`) VALUES
 	(1, 'admin', '$2y$10$b9QpSp198ciPycL4itqJ4.09ng.twSXPhpjRA0cyV1i8ELi32iYz6', 'Administrator', '2026-05-09 02:52:36');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
