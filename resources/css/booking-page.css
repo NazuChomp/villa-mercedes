@@ -140,6 +140,134 @@ textarea {
     cursor: pointer;
 }
 
+.more-details {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #0c5749;
+    text-decoration: none;
+}
+
+.more-details:hover {
+    text-decoration: underline;
+}
+
+/* ── Modal overlay ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ── Modal box ── */
+.modal {
+    background: #fff;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 700px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: transform 0.2s ease;
+    position: relative;
+}
+
+.modal-overlay.is-open .modal {
+    transform: translateY(0);
+}
+
+.modal img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    background: rgba(0,0,0,0.65);
+}
+
+.modal-body {
+    padding: 1.25rem;
+}
+
+.modal-body h2 {
+    font-size: 1.2rem;
+    color: #2C3E50;
+    margin-bottom: 0.5rem;
+}
+
+.modal-body p {
+    font-size: 0.875rem;
+    color: #7F8C8D;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.modal-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.modal-meta span {
+    background: #f0faf7;
+    color: #0c5749;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.modal-book-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #0c5749;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.modal-book-btn:hover {
+    background-color: #0a4538;
+}
+
 @media (max-width: 768px) {
     .facility-form-wrapper {
         flex-direction: column;

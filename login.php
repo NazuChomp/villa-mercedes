@@ -85,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $type = $_SESSION['flash']['type'];
                     $text = $_SESSION['flash']['text'];
                     
-                    echo "<div class='msg " . htmlspecialchars($type) . "'>" . htmlspecialchars($text) . "</div>";
+                    echo "<div class='msg " . htmlspecialchars($type) . "'>" . htmlspecialchars($text[0]) . "</div>";
                     
                     unset($_SESSION['flash']);
                     }

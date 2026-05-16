@@ -35,6 +35,22 @@ $result = $stmt->get_result();
     </div>
 </header>   
     
+<div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+        <button class="modal-close" id="modal-close">&times;</button>
+        <img src="" alt="" id="modal-img">
+        <div class="modal-body">
+            <h2 id="modal-name"></h2>
+            <p id="modal-description"></p>
+            <div class="modal-meta">
+                <span id="modal-rate"></span>
+                <span id="modal-capacity"></span>
+            </div>
+            <button class="modal-book-btn" id="modal-book-btn">Book Now</button>
+        </div>
+    </div>
+</div>
+
 <main class="main-booking">
 
     <div class="header-block">
@@ -66,7 +82,15 @@ $result = $stmt->get_result();
                             <h3><?= e($row['name']) ?></h3>
                             <p><?= e($row['description']) ?></p>
                             <p class="rate"><?= e('₱' . $row['rate_amount']) ?></p>
-                            <p class="more-detail">click for more details</p>
+                            <a href="" class="more-details" 
+                                data-name="<?= e($row['name']) ?>"
+                                data-description="<?= e($row['description']) ?>"
+                                data-rate="<?= e($row['rate_amount']) ?>"
+                                data-unit="<?= e($row['rate_unit']) ?>"
+                                data-capacity="<?= e($row['capacity']) ?>"
+                                data-img="<?= e(url('resources/img/') . $row['image_filename']) ?>">
+                                More details
+                            </a>
                         </div>
                     </div>
 
