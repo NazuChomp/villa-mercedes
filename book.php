@@ -118,6 +118,7 @@ $result = $stmt->get_result();
                 <label for="check-out-date">Check-out Date</label>
                 <input type="date" name="check-out-date" id="check-out-date" required>
             </div>
+            <div id="availability-msg"></div>
             <div class="form-row">
                 <label for="facility">Select accommodation</label>
                 <select name="facility" id="facility">
@@ -126,7 +127,7 @@ $result = $stmt->get_result();
                     $result->data_seek(0);
                     while($row = $result->fetch_assoc()):
                     ?>
-                    <option value="<?= e($row['name']) ?>"><?= e($row['name']) ?></option>
+                    <option value="<?= (int)$row['id'] ?>"><?= e($row['name']) ?></option>
                     <?php endwhile; ?>
                 </select>
             </div>  

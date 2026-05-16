@@ -64,8 +64,8 @@ if (!empty($errors)) {
     exit;
 }
 
-$stmt = $conn->prepare("SELECT id FROM facilities WHERE name = ?");
-$stmt->bind_param("s", $facility);
+$stmt = $conn->prepare("SELECT id FROM facilities WHERE id = ?");
+$stmt->bind_param("i", $facility);
 $stmt->execute();
 $res = $stmt->get_result()->fetch_assoc();
 
@@ -73,6 +73,23 @@ $facility_id = $res['id'] ?? null;
 
 if (!$facility_id) {
     die("Invalid facility selected.");
+}
+$stmt = $conn->prepare("
+    SELECT COUNT(*) as cnt
+    FROM bookings
+    WHERE facility_id = ?
+    AND status != 'Cancelled'
+    AND (date_start <= ? AND date_end >= ?)
+");
+
+$stmt->bind_param("iss", $facility_id, $checkout, $checkin);
+$stmt->execute();
+$conflict = $stmt->get_result()->fetch_assoc();
+
+if ($conflict['cnt'] > 0) {
+    flash('err', ['Selected dates are already occupied for this facility.']);
+    header('Location: ../book.php');
+    exit;
 }
 
 $stmt = $conn->prepare("

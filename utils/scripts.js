@@ -81,3 +81,30 @@ modalBook.addEventListener('click', () => {
     facilitySelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
     facilitySelect.focus();
 });
+
+const checkin = document.getElementById('check-in-date');
+const checkout = document.getElementById('check-out-date');
+const facility = document.getElementById('facility');
+const msg = document.getElementById('availability-msg');
+
+async function checkAvailability() {
+    if (!checkin.value || !checkout.value || !facility.value) return;
+
+    const res = await fetch(
+        `repositories/checkAvailability.php?facility_id=${facility.value}&checkin=${checkin.value}&checkout=${checkout.value}`
+    );
+
+    const data = await res.json();
+
+    if (data.available) {
+        msg.textContent = "Available ✔";
+        msg.className = "show available";
+    } else {
+        msg.textContent = "Occupied during the selected date ❌";
+        msg.className = "show unavailable";
+    }
+}
+
+checkin.addEventListener('change', checkAvailability);
+checkout.addEventListener('change', checkAvailability);
+facility.addEventListener('change', checkAvailability);
