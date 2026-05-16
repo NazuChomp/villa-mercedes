@@ -108,7 +108,7 @@ if ($booking_id) {
         (guest_name, phone_number, facility_id, date_start, date_end, status, payment_status, payment_amount, notes)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
-    $stmt->bind_param("ssisssds", $name, $phone_number, $facility, $start_date, $end_date, $status, $payment, $amount, $notes);
+    $stmt->bind_param("ssisssdss", $name, $phone_number, $facility, $start_date, $end_date, $status, $payment, $amount, $notes);
     $stmt->execute();
     flash('ok', ['Booking created successfully.']);
 }
